@@ -1,6 +1,12 @@
 import streamlit as st
 from transformers import pipeline
 
+import os
+os.environ["TF_USE_LEGACY_KERAS"] = "1"
+
+import streamlit as st
+from transformers import pipeline
+
 # -----------------------------
 # PAGE CONFIG
 # -----------------------------
