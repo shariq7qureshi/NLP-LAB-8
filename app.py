@@ -117,27 +117,16 @@ user_text = st.text_area(
 # -----------------------------
 
 prompt_map = {
-
-    "Fix Grammar":
-
-        "Correct the grammar of the following text:\n\n",
-
-    "Professional Rewrite":
-
-        "Rewrite professionally:\n\n",
-
-    "Simplify Text":
-
-        "Simplify the following text:\n\n",
-
-    "Summarize":
-
-        "Summarize:\n\n",
-
-    "Convert to Email":
-
-        "Convert the following into a professional email:\n\n"
-
+    "Fix Grammar": 
+        "Correct the grammar and spelling of this text: ",
+    "Professional Rewrite": 
+        "Rewrite the following text to sound highly professional and formal: ",
+    "Simplify Text": 
+        "Simplify this text so it is easy to understand: ",
+    "Summarize": 
+        "Summarize the following text in a few sentences: ",
+    "Convert to Email": 
+        "Write a professional email based on the following instructions: "
 }
 
 # -----------------------------
@@ -147,29 +136,21 @@ prompt_map = {
 if st.button("✨ Generate"):
 
     if len(user_text.strip()) == 0:
-
         st.warning("Please enter some text.")
-
     else:
-
-        prompt = prompt_map[mode] + user_text
+        prompt = prompt_map[mode] + user_text.strip()
 
         with st.spinner("AI is writing..."):
-
             result = generator(
-
                 prompt,
-
-                max_new_tokens=300,
-
-                do_sample=False
-
+                max_length=300,   
+                min_length=10,    
+                do_sample=False 
             )
 
         output = result[0]["generated_text"]
 
         st.subheader("Result")
-
         st.success(output)
 
 # -----------------------------
