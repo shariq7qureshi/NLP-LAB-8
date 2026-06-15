@@ -55,12 +55,11 @@ div[data-testid="stSelectbox"]{
 
 @st.cache_resource
 def load_model():
-
     pipe = pipeline(
         "text2text-generation",
-        model="google/flan-t5-base"
+        model="google/flan-t5-base",
+        framework="tf" 
     )
-
     return pipe
 
 generator = load_model()
