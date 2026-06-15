@@ -1,15 +1,20 @@
 
 import streamlit as st
-from transformers import TFAutoModelForSeq2SeqLM, AutoTokenizer
+from transformers import TFT5ForConditionalGeneration, AutoTokenizer
 import tensorflow as tf
 
 MODEL_NAME = "google/flan-t5-small"
 
 @st.cache_resource
 def load_model():
-    tok = AutoTokenizer.from_pretrained(MODEL_NAME)
-    model = TFAutoModelForSeq2SeqLM.from_pretrained(MODEL_NAME, from_pt=True)
-    return tok, model
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+
+    model = TFT5ForConditionalGeneration.from_pretrained(
+        MODEL_NAME,
+        from_pt=True
+    )
+
+    return tokenizer, model
 
 tokenizer, model = load_model()
 
